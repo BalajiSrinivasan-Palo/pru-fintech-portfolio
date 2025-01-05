@@ -1,3 +1,5 @@
+name: Generate Portfolio Artifact
+
 on:
   workflow_dispatch:
     inputs:
@@ -9,12 +11,19 @@ on:
 jobs:
   generate-portfolio:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Generate portfolio artifact
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Generate portfolio
         run: |
           mkdir -p artifacts
           if [ -z "${{ github.event.inputs.date }}" ]; then
@@ -22,10 +31,26 @@ jobs:
           else
             DATE=${{ github.event.inputs.date }}
           fi
-          python generate_portfolio.py $DATE
+          python generate_portfolio.py "$DATE"
+          cp artifacts/portfolio.json "artifacts/portfolio_${DATE}.json"
 
-      - name: Upload artifact
+      - name: Commit and push
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          git add artifacts/portfolio.json
+          git add artifacts/portfolio_*.json
+          git commit -m "Update portfolio for $(date +'%Y-%m-%d')"
+          git push origin main
+
+      - name: Upload current portfolio
         uses: actions/upload-artifact@v3
         with:
-          name: portfolio-artifact-${{ github.run_id }}
+          name: portfolio
           path: artifacts/portfolio.json
+
+      - name: Upload dated portfolio
+        uses: actions/upload-artifact@v3
+        with:
+          name: portfolio-dated
+          path: artifacts/portfolio_*.json
