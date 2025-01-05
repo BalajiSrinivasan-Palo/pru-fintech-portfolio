@@ -1,0 +1,17 @@
+{
+    "date": "2025-01-05",
+    "funds": [
+        {
+            "name": "Fund B",
+            "units_owned": 142.32
+        },
+        {
+            "name": "Fund C",
+            "units_owned": 491.57
+        },
+        {
+            "name": "Fund A",
+            "units_owned": 299.97
+        }
+    ]
+}
