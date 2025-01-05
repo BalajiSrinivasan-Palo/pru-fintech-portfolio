@@ -1,5 +1,3 @@
-name: Generate Portfolio Artifact
-
 on:
   workflow_dispatch:
     inputs:
@@ -41,16 +39,16 @@ jobs:
           git add artifacts/portfolio.json
           git add artifacts/portfolio_*.json
           git commit -m "Update portfolio for $(date +'%Y-%m-%d')"
-          git push origin main
+          git push origin master
 
-      - name: Upload current portfolio
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: portfolio
+          name: portfolio-artifact-${{ github.run_id }}
           path: artifacts/portfolio.json
 
-      - name: Upload dated portfolio
+      - name: Upload dated artifact
         uses: actions/upload-artifact@v3
         with:
-          name: portfolio-dated
+          name: portfolio-artifact-dated-${{ github.run_id }}
           path: artifacts/portfolio_*.json
