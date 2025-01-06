@@ -3,11 +3,11 @@
     "funds": [
         {
             "name": "Fund A",
-            "units_owned": 192.92
+            "units_owned": 186.85
         },
         {
             "name": "Fund B",
-            "units_owned": 174.27
+            "units_owned": 107.08
         }
     ]
 }
