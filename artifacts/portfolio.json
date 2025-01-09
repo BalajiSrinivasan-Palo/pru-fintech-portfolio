@@ -2,12 +2,16 @@
     "date": "2025-01-09",
     "funds": [
         {
-            "name": "Fund B",
-            "units_owned": 271.31
+            "name": "Fund C",
+            "units_owned": 242.38
         },
         {
             "name": "Fund A",
-            "units_owned": 29.08
+            "units_owned": 324.75
+        },
+        {
+            "name": "Fund B",
+            "units_owned": 370.1
         }
     ]
 }
