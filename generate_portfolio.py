@@ -9,7 +9,7 @@ def generate_portfolio(date):
         "funds": []
     }
     
-    fund_names = ["Fund A", "Fund B"]  # Example fund names
+    fund_names = ["Fund A", "Fund B","Fund C"]  # Example fund names
     num_funds = random.randint(2, len(fund_names))
     selected_funds = random.sample(fund_names, num_funds)
     
